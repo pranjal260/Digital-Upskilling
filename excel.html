@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MS Excel | Basic IT Skills</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f5f9;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header {
+      margin-bottom: 30px;
+    }
+
+    video {
+      width: 90%;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    #completeBtn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    #completeBtn:disabled {
+      background-color: #a5b4fc;
+      cursor: not-allowed;
+    }
+
+    #next {
+      margin-top: 30px;
+      display: none;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2 id="lessonTitle">📊 MS Excel</h2>
+    <p id="lessonDesc">Watch the lesson in your selected language</p>
+  </header>
+
+  <main>
+    <video id="lessonVideo" controls>
+      <source id="videoSource" src="" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <br />
+    <button id="completeBtn" onclick="markDone()" disabled>✅ Mark as Completed</button>
+
+    <div id="next">
+      <h3>🎉 Congratulations! You completed this lesson.</h3>
+      <a href="basic-it.html">← Back to Basic IT Lessons</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>🌐 DigiSkill © 2025 — Empowering through Offline Learning</p>
+  </footer>
+
+  <script>
+    const lang = localStorage.getItem("preferredLang") || "en";
+    const videoPath = `videos/ms-excel-${lang}.mp4`;
+
+    // Set the video
+    const video = document.getElementById("lessonVideo");
+    const videoSource = document.getElementById("videoSource");
+    videoSource.src = videoPath;
+    video.load();
+
+    const completeBtn = document.getElementById("completeBtn");
+    const nextDiv = document.getElementById("next");
+
+    video.addEventListener("ended", () => {
+      completeBtn.disabled = false;
+    });
+
+    function markDone() {
+      if (!video.ended) {
+        alert("⚠️ Please watch the full video before marking as completed.");
+        return;
+      }
+      alert("✅ Lesson marked as completed!");
+      nextDiv.style.display = "block";
+    }
+
+    // Language-based UI (Optional)
+    const titles = {
+      hi: "📊 एमएस एक्सेल",
+      bn: "📊 এমএস এক্সেল",
+      pa: "📊 ਐਮਐਸ ਐਕਸਲ",
+      en: "📊 MS Excel"
+    };
+    const descs = {
+      hi: "अपनी पसंदीदा भाषा में MS Excel सीखें",
+      bn: "নিজের ভাষায় MS Excel শিখুন",
+      pa: "ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ MS Excel ਸਿੱਖੋ",
+      en: "Watch the lesson in your selected language"
+    };
+    document.getElementById("lessonTitle").textContent = titles[lang];
+    document.getElementById("lessonDesc").textContent = descs[lang];
+  </script>
+  <script src="api.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Basic IT Skills | DigiSkill</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      background-color: #334155;
+      color: white;
+      padding: 30px 10px;
+      border-radius: 10px;
+    }
+
+    .lessons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .lesson-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      width: 280px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .lesson-card button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .lesson-card button:hover {
+      background-color: #1e40af;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">💻 Basic IT Skills</h1>
+    <p id="desc">Learn Word, Excel, PowerPoint easily in your language</p>
+  </header>
+
+  <main>
+    <div class="lessons" id="lesson-container">
+      <!-- Lesson cards will be loaded by JS -->
+    </div>
+  </main>
+
+  <footer>
+    <p>🌐 DigiSkill © 2025 — Empowering through Offline Learning</p>
+  </footer>
+
+  <script>
+    const lang = localStorage.getItem("preferredLang") || "en";
+
+    const lessons = {
+      en: [
+        { title: "MS Excel", link: "excel.html" },
+        { title: "MS PowerPoint", link: "powerpoint.html" },
+        { title: "MS Word", link: "word.html" }
+      ],
+      hi: [
+        { title: "एमएस एक्सेल", link: "excel.html" },
+        { title: "एमएस पावरपॉइंट", link: "powerpoint.html" },
+        { title: "एमएस वर्ड", link: "word.html" }
+      ],
+      bn: [
+        { title: "এমএস এক্সেল", link: "excel.html" },
+        { title: "এমএস পাওয়ারপয়েন্ট", link: "powerpoint.html" },
+        { title: "এমএস ওয়ার্ড", link: "word.html" }
+      ],
+      pa: [
+        { title: "ਐਮਐਸ ਐਕਸਲ", link: "excel.html" },
+        { title: "ਐਮਐਸ ਪਾਵਰਪੋਇੰਟ", link: "powerpoint.html" },
+        { title: "ਐਮਐਸ ਵਰਡ", link: "word.html" }
+      ]
+    };
+
+    const titles = {
+      en: {
+        heading: "💻 Basic IT Skills",
+        desc: "Learn Word, Excel, PowerPoint easily in your language"
+      },
+      hi: {
+        heading: "💻 बेसिक आईटी स्किल्स",
+        desc: "एमएस वर्ड, एक्सेल, पावरपॉइंट अपनी भाषा में सीखें"
+      },
+      bn: {
+        heading: "💻 বেসিক আইটি স্কিলস",
+        desc: "MS ওয়ার্ড, এক্সেল, পাওয়ারপয়েন্ট শিখুন নিজের ভাষায়"
+      },
+      pa: {
+        heading: "💻 ਬੇਸਿਕ ਆਈਟੀ ਸਕਿਲਸ",
+        desc: "ਐਮਐਸ ਵਰਡ, ਐਕਸਲ, ਪਾਵਰਪੋਇੰਟ ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ ਸਿੱਖੋ"
+      }
+    };
+
+    // Apply localized header
+    document.getElementById("title").textContent = titles[lang].heading;
+    document.getElementById("desc").textContent = titles[lang].desc;
+
+    // Load lesson cards
+    const container = document.getElementById("lesson-container");
+    lessons[lang].forEach(lesson => {
+      const card = document.createElement("div");
+      card.className = "lesson-card";
+
+      const p = document.createElement("p");
+      p.textContent = lesson.title;
+
+      const btn = document.createElement("button");
+      btn.textContent = "Start Lesson";
+      btn.onclick = () => window.location.href = lesson.link;
+
+      card.appendChild(p);
+      card.appendChild(btn);
+      container.appendChild(card);
+    });
+  </script>
+  <script src="api.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DigiSkill | Empowering Learning</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <header>
+    <h1>DigiSkill</h1>
+    <p>Empowering learning even without internet</p>
+  </header>
+
+  <!-- Language Selection -->
+  <section class="language-section">
+    <label for="language">Choose your language:</label>
+    <select id="language" onchange="changeLanguage()">
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+      <option value="bn">বাংলা</option>
+      <option value="pa">ਪੰਜਾਬੀ</option>
+    </select>
+  </section>
+
+  <!-- Start Button -->
+  <section class="start-section">
+    <button onclick="startLearning()">🚀 Start Learning</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DigiSkill Platform | Offline Education for All</p>
+  </footer>
+
+  <script>
+    // Save selected language to localStorage
+    function changeLanguage() {
+      const lang = document.getElementById("language").value;
+      localStorage.setItem("preferredLang", lang);
+    }
+
+    // On page load, set dropdown to saved language
+    window.onload = function () {
+      const savedLang = localStorage.getItem("preferredLang") || "en";
+      document.getElementById("language").value = savedLang;
+    };
+
+    // Redirect to course list
+    function startLearning() {
+      window.location.href = "course-list.html";
+    }
+  </script>
+  <script src="api.js"></script>
+
+</body>
+</html>

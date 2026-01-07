@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select a Course | DigiSkill</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <header>
+    <h1 id="heading">📚 Choose a Skill to Learn</h1>
+    <p id="subheading">Select any course below to start learning offline!</p>
+  </header>
+
+  <main style="text-align: center; margin-top: 30px; ">
+    <button id="btn1" onclick="goTo('basic-it')">💻 Basic IT Skills</button><br><br>
+    <button id="btn2" onclick="goTo('english')">🗣️ Spoken English</button><br><br>
+    <button id="btn3" onclick="goTo('tailoring')">🧵 Tailoring & Stitching</button><br><br>
+    <button id="btn4" onclick="goTo('mobile-repair')">🔧 Mobile Repair Basics</button><br><br>
+    <button id="btn5" onclick="goTo('digital-pay')">💸 Digital Payments & Online Safety</button>
+  </main>
+
+  <footer style="margin-top: 50px;">
+    <p>🌱 Empowering communities through offline digital learning — DigiSkill</p>
+  </footer>
+
+  <script>
+    function goTo(courseId) {
+      window.location.href = courseId + ".html";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const lang = localStorage.getItem("preferredLang") || "en";
+
+      if (lang === "hi") {
+        document.getElementById("heading").textContent = "📚 सीखने के लिए एक कौशल चुनें";
+        document.getElementById("subheading").textContent = "किसी भी कोर्स को चुनें और ऑफलाइन सीखना शुरू करें!";
+        document.getElementById("btn1").textContent = "💻 बेसिक आईटी स्किल्स";
+        document.getElementById("btn2").textContent = "🗣️ अंग्रेज़ी बोलना";
+        document.getElementById("btn3").textContent = "🧵 सिलाई और कढ़ाई";
+        document.getElementById("btn4").textContent = "🔧 मोबाइल रिपेयरिंग";
+        document.getElementById("btn5").textContent = "💸 डिजिटल भुगतान और सुरक्षा";
+      } else if (lang === "bn") {
+        document.getElementById("heading").textContent = "📚 একটি স্কিল নির্বাচন করুন";
+        document.getElementById("subheading").textContent = "একটি কোর্স বেছে নিন এবং অফলাইনে শিখুন!";
+        document.getElementById("btn1").textContent = "💻 বেসিক আইটি স্কিলস";
+        document.getElementById("btn2").textContent = "🗣️ ইংরেজি ভাষা";
+        document.getElementById("btn3").textContent = "🧵 সেলাই এবং সূচিকর্ম";
+        document.getElementById("btn4").textContent = "🔧 মোবাইল রিপেয়ার";
+        document.getElementById("btn5").textContent = "💸 ডিজিটাল পেমেন্ট ও নিরাপত্তা";
+      } else if (lang === "pa") {
+        document.getElementById("heading").textContent = "📚 ਸਿੱਖਣ ਲਈ ਇੱਕ ਹੁਨਰ ਚੁਣੋ";
+        document.getElementById("subheading").textContent = "ਕੋਈ ਵੀ ਕੋਰਸ ਚੁਣੋ ਅਤੇ ਆਫਲਾਈਨ ਸਿੱਖੋ!";
+        document.getElementById("btn1").textContent = "💻 ਬੇਸਿਕ ਆਈਟੀ ਸਕਿਲਸ";
+        document.getElementById("btn2").textContent = "🗣️ ਬੋਲੀ ਗਈ ਅੰਗਰੇਜ਼ੀ";
+        document.getElementById("btn3").textContent = "🧵 ਸਿਲਾਈ ਅਤੇ ਕਢਾਈ";
+        document.getElementById("btn4").textContent = "🔧 ਮੋਬਾਈਲ ਮੁਰੰਮਤ";
+        document.getElementById("btn5").textContent = "💸 ਡਿਜੀਟਲ ਭੁਗਤਾਨ ਅਤੇ ਸੁਰੱਖਿਆ";
+      }
+      // else default English content already exists
+    });
+  </script>
+  <script src="api.js"></script>
+
+</body>
+</html>

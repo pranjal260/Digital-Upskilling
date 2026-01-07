@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 1 | What is Digital Payment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header {
+      margin-bottom: 30px;
+    }
+
+    video {
+      width: 90%;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    #completeBtn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    #completeBtn:disabled {
+      background-color: #a5b4fc;
+      cursor: not-allowed;
+    }
+
+    #next {
+      margin-top: 30px;
+      display: none;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2 id="heading">💡 What is Digital Payment?</h2>
+    <p id="desc">Watch the full lesson in your selected language</p>
+  </header>
+
+  <main>
+    <video id="lessonVideo" controls>
+      <source id="videoSource" src="" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <br />
+    <button id="completeBtn" onclick="markDone()" disabled>✅ Mark as Completed</button>
+
+    <div id="next">
+      <h3 id="doneText">🎉 Congratulations! You completed this lesson.</h3>
+      <a href="digital-pay.html" id="backText">← Back to Lesson List</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>🌐 DigiSkill © 2025 — Empowering through Offline Learning</p>
+  </footer>
+
+  <script>
+    const lang = localStorage.getItem("preferredLang") || "en";
+
+    const videoSource = document.getElementById("videoSource");
+    const video = document.getElementById("lessonVideo");
+    const completeBtn = document.getElementById("completeBtn");
+    const nextDiv = document.getElementById("next");
+
+    // ✅ Language-specific video path
+    videoSource.src = `videos/what-is-digital-payment-${lang}.mp4`;
+    video.load();
+
+    // ✅ Update headings according to language
+    if (lang === "hi") {
+      document.getElementById("heading").textContent = "💡 डिजिटल भुगतान क्या है?";
+      document.getElementById("desc").textContent = "अपनी चुनी गई भाषा में पूरा वीडियो देखें।";
+      document.getElementById("completeBtn").textContent = "✅ पूर्ण कर लिया गया";
+      document.getElementById("doneText").textContent = "🎉 बधाई हो! आपने यह पाठ पूरा कर लिया है।";
+      document.getElementById("backText").textContent = "← पाठ सूची पर वापस जाएँ";
+    } else if (lang === "bn") {
+      document.getElementById("heading").textContent = "💡 ডিজিটাল পেমেন্ট কী?";
+      document.getElementById("desc").textContent = "আপনার নির্বাচিত ভাষায় ভিডিওটি সম্পূর্ণ দেখুন।";
+      document.getElementById("completeBtn").textContent = "✅ সম্পন্ন হয়েছে";
+      document.getElementById("doneText").textContent = "🎉 অভিনন্দন! আপনি এই পাঠ শেষ করেছেন।";
+      document.getElementById("backText").textContent = "← পাঠ তালিকায় ফিরে যান";
+    } else if (lang === "pa") {
+      document.getElementById("heading").textContent = "💡 ਡਿਜੀਟਲ ਭੁਗਤਾਨ ਕੀ ਹੈ?";
+      document.getElementById("desc").textContent = "ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ ਪੂਰਾ ਵੀਡੀਓ ਦੇਖੋ।";
+      document.getElementById("completeBtn").textContent = "✅ ਪੂਰਾ ਕੀਤਾ ਗਿਆ";
+      document.getElementById("doneText").textContent = "🎉 ਵਧਾਈ ਹੋ! ਤੁਸੀਂ ਇਹ ਪਾਠ ਪੂਰਾ ਕਰ ਲਿਆ ਹੈ।";
+      document.getElementById("backText").textContent = "← ਪਾਠ ਸੂਚੀ ਤੇ ਵਾਪਸ ਜਾਓ";
+    }
+
+    // ✅ Enable "Completed" button only when video ends
+    video.addEventListener("ended", () => {
+      completeBtn.disabled = false;
+    });
+
+    // ✅ Validate before marking as complete
+    function markDone() {
+      if (!video.ended) {
+        alert("⚠️ Please complete the video before marking it as done.");
+        return;
+      }
+      alert("✅ Lesson marked as completed!");
+      nextDiv.style.display = "block";
+    }
+  </script>
+  <script src="api.js"></script>
+
+</body>
+</html>

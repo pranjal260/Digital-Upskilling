@@ -1,0 +1,62 @@
+/* DigiSkill Styling */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url("images/village-kids.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  height: 100vh;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.language-section {
+  margin: 30px auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+select {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
+
+footer {
+  margin-top: 60px;
+  font-size: 0.8rem;
+  color: #f0f0f0;
+}

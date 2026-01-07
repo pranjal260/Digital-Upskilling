@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Digital Payments & Safety | DigiSkill</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      background-color: #1e3a8a;
+      color: white;
+      padding: 30px 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    main {
+      margin: 40px auto;
+      max-width: 900px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: #111827;
+    }
+
+    .lessons {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .lesson-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .lesson-card button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background-color 0.3s;
+    }
+
+    .lesson-card button:hover {
+      background-color: #1e40af;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">💸 Digital Payments & Online Safety</h1>
+    <p id="desc">Learn secure, smart and safe transactions in your own language</p>
+  </header>
+
+  <main>
+    <h2 id="lesson-heading">📑 Lesson List</h2>
+    <div class="lessons" id="lesson-container">
+      <!-- Lesson cards will be inserted via JS -->
+    </div>
+  </main>
+
+  <footer>
+    <p>🌐 DigiSkill © 2025 — Empowering through Offline Learning</p>
+  </footer>
+
+  <script>
+    const lessons = {
+      en: [
+        "What is Digital Payment?",
+        "UPI Basics",
+        "How to Use QR Code",
+        "Wallets vs Bank Apps",
+        "Internet Safety Rules",
+        "Common Scams",
+        "Secure Passwords",
+        "KYC & Privacy",
+        "Using ATM Safely",
+        "Summary & Quiz"
+      ],
+      hi: [
+        "डिजिटल भुगतान क्या है?",
+        "UPI की मूल बातें",
+        "QR कोड का उपयोग कैसे करें",
+        "वॉलेट बनाम बैंक ऐप्स",
+        "इंटरनेट सुरक्षा नियम",
+        "सामान्य घोटाले",
+        "सुरक्षित पासवर्ड",
+        "KYC और गोपनीयता",
+        "ATM का सुरक्षित उपयोग",
+        "सारांश और क्विज़"
+      ],
+      bn: [
+        "ডিজিটাল পেমেন্ট কী?",
+        "UPI-এর ভিত্তি",
+        "QR কোড ব্যবহার",
+        "ওয়ালেট বনাম ব্যাংক অ্যাপ",
+        "ইন্টারনেট নিরাপত্তা",
+        "সাধারণ প্রতারণা",
+        "নিরাপদ পাসওয়ার্ড",
+        "KYC এবং গোপনীয়তা",
+        "ATM নিরাপদ ব্যবহার",
+        "সারাংশ ও কুইজ"
+      ],
+      pa: [
+        "ਡਿਜੀਟਲ ਭੁਗਤਾਨ ਕੀ ਹੈ?",
+        "UPI ਦੀਆਂ ਬੁਨਿਆਦਾਂ",
+        "QR ਕੋਡ ਦੀ ਵਰਤੋਂ",
+        "ਵਾਲਿਟਸ ਬਨਾਮ ਬੈਂਕ ਐਪਸ",
+        "ਇੰਟਰਨੈੱਟ ਸੁਰੱਖਿਆ ਨਿਯਮ",
+        "ਆਮ ਧੋਖਾਧੜੀ",
+        "ਸੁਰੱਖਿਅਤ ਪਾਸਵਰਡ",
+        "KYC ਅਤੇ ਪਰਦੇਦਾਰੀ",
+        "ATM ਦੀ ਸੁਰੱਖਿਅਤ ਵਰਤੋਂ",
+        "ਸੰਖੇਪ ਅਤੇ ਕੁਇਜ਼"
+      ]
+    };
+
+    const lang = localStorage.getItem("preferredLang") || "en";
+    const selectedLessons = lessons[lang];
+
+    // Language-based heading updates
+    if (lang === "hi") {
+      document.getElementById("title").textContent = "💸 डिजिटल भुगतान और ऑनलाइन सुरक्षा";
+      document.getElementById("desc").textContent = "अपनी भाषा में सुरक्षित और स्मार्ट लेन-देन करना सीखें।";
+      document.getElementById("lesson-heading").textContent = "📑 पाठ सूची";
+    } else if (lang === "bn") {
+      document.getElementById("title").textContent = "💸 ডিজিটাল পেমেন্ট ও অনলাইন নিরাপত্তা";
+      document.getElementById("desc").textContent = "নিজের ভাষায় নিরাপদ এবং স্মার্ট লেনদেন শিখুন।";
+      document.getElementById("lesson-heading").textContent = "📑 পাঠ তালিকা";
+    } else if (lang === "pa") {
+      document.getElementById("title").textContent = "💸 ਡਿਜੀਟਲ ਭੁਗਤਾਨ ਅਤੇ ਆਨਲਾਈਨ ਸੁਰੱਖਿਆ";
+      document.getElementById("desc").textContent = "ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਲੈਣ-ਦੇਣ ਸਿੱਖੋ।";
+      document.getElementById("lesson-heading").textContent = "📑 ਪਾਠ ਸੂਚੀ";
+    }
+
+    const container = document.getElementById("lesson-container");
+
+    selectedLessons.forEach((title, index) => {
+      const card = document.createElement("div");
+      card.className = "lesson-card";
+
+      const text = document.createElement("p");
+      text.textContent = title;
+
+      const btn = document.createElement("button");
+      btn.textContent = "Start Lesson";
+      btn.onclick = () => window.location.href = `lesson${index + 1}.html`;
+
+      card.appendChild(text);
+      card.appendChild(btn);
+      container.appendChild(card);
+    });
+  </script>
+  <script src="api.js"></script>
+
+</body>
+</html>
